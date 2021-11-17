@@ -3,7 +3,7 @@ from game.shared.point import Point
 import random
 
 # TODO: Implem(ent the Artifact class here. Don't forget to inherit from Actor!
-class Artifact(Actor):
+class Falling_Object(Actor):
     def __init__(self):
         super().__init__()
         self._message = ""

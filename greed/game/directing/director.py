@@ -50,18 +50,20 @@ class Director:
         """
         banner = cast.get_first_actor("banners")
         robot = cast.get_first_actor("robots")
-        artifacts = cast.get_actors("artifacts")
+        falling_objects = cast.get_actors("falling_object")
 
         banner.set_text(f"Score: {self._score}")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
         
-        for artifact in artifacts:   
-            artifact.move()
-            if robot.get_position().equals(artifact.get_position()):
-                artifact.set_points()            
-                points = artifact.get_points()
+        for object in falling_objects:   
+            object.move()
+            r_position = robot.get_position()
+            f_position = object.get_position()
+            if robot.get_position().equals(object.get_position()):
+                object.set_points()            
+                points = object.get_points()
                 self._score += points
                 message = "Score: " + str(self._score)
                 banner.set_text(message) 

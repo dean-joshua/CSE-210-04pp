@@ -2,7 +2,7 @@ import os
 import random
 
 from game.casting.actor import Actor
-from game.casting.artifact import Artifact
+from game.casting.falling_object import Falling_Object
 from game.casting.cast import Cast
 
 from game.directing.director import Director
@@ -21,10 +21,10 @@ CELL_SIZE = 15
 FONT_SIZE = 15
 COLS = 60
 ROWS = 40
-CAPTION = "Robot Finds Kitten"
+CAPTION = "Greed"
 DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
 WHITE = Color(255, 255, 255)
-DEFAULT_ARTIFACTS = 100
+DEFAULT_OBJECTS = 100
 
 
 def main():
@@ -57,7 +57,7 @@ def main():
     #    data = file.read()
      #   messages = data.splitlines()
 
-    for n in range(DEFAULT_ARTIFACTS):
+    for n in range(DEFAULT_OBJECTS):
         thingy = [42,79]
         text = chr(random.choice(thingy))
         #message = messages[n]
@@ -72,13 +72,13 @@ def main():
         b = random.randint(0, 255)
         color = Color(r, g, b)
         
-        artifact = Artifact()
-        artifact.set_text(text)
-        artifact.set_font_size(20)
-        artifact.set_color(color)
-        artifact.set_position(position)
+        falling_object = Falling_Object()
+        falling_object.set_text(text)
+        falling_object.set_font_size(20)
+        falling_object.set_color(color)
+        falling_object.set_position(position)
         #artifact.set_message(message)
-        cast.add_actor("artifacts", artifact)
+        cast.add_actor("falling_object", falling_object)
     
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
