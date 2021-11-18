@@ -52,21 +52,22 @@ class Director:
         robot = cast.get_first_actor("robots")
         falling_objects = cast.get_actors("falling_object")
 
+        for object in falling_objects:  
+            object.move()
+            if robot.get_position().equals(object.get_position()):
+                object.set_points()            
+                points = object.get_points()
+                self._score += points
+                cast.remove_actor("falling_object", object)
+                message = "Score: " + str(self._score)
+                banner.set_text(message) 
+
         banner.set_text(f"Score: {self._score}")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
         
-        for object in falling_objects:   
-            object.move()
-            r_position = robot.get_position()
-            f_position = object.get_position()
-            if robot.get_position().equals(object.get_position()):
-                object.set_points()            
-                points = object.get_points()
-                self._score += points
-                message = "Score: " + str(self._score)
-                banner.set_text(message) 
+        
             
                
         

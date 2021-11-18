@@ -29,7 +29,7 @@ class Falling_Object(Actor):
         x = self._position.get_x()
         y = self._position.get_y()
         if y >= 600:
-            y = 0 + random.randint(1,2)
+            y = 0 + 1
         else:
-            y += random.randint(1,5)
+            y += 1
         self._position = Point(x,y)

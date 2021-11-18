@@ -32,11 +32,13 @@ class Point:
         y = self._y + other.get_y()
         return Point(x, y)
 
-    def subtract(self, other):
+    def is_close(self, other):
         """Subtract the points from each other."""
         x = self._x - other.get_x()
         y = self._y - other.get_y()
-        return Point(x,y)
+        if (x <= 1 and x >= 0) and (y <= 1 and x >= 0):
+            return True
+        return False
 
 
     def equals(self, other):

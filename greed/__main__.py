@@ -47,22 +47,19 @@ def main():
 
     robot = Actor()
     robot.set_text("#")
-    robot.set_font_size(FONT_SIZE)
+    robot.set_font_size(16)
     robot.set_color(WHITE)
     robot.set_position(position)
     cast.add_actor("robots", robot)
     
     # create the artifacts
-   # with open(DATA_PATH) as file:
-    #    data = file.read()
-     #   messages = data.splitlines()
 
     for n in range(DEFAULT_OBJECTS):
         thingy = [42,79]
         text = chr(random.choice(thingy))
         #message = messages[n]
 
-        x = random.randint(1, COLS - 1)
+        x = random.randint(1, COLS - 1) 
         y = random.randint(1, ROWS - 1)
         position = Point(x, random.randint(1,20))
         position = position.scale(CELL_SIZE)
