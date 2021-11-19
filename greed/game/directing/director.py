@@ -83,6 +83,7 @@ class Director:
                 elif object.is_ready_to_delete():
                     cast.remove_actor("falling_obect", object)
 
+        # A timer to control when to create and spawn new falling_objects
         self._timer += 1
         if self._timer == 25:
 
@@ -107,11 +108,7 @@ class Director:
                 falling_object.set_font_size(30)
                 falling_object.set_color(color)
                 falling_object.set_position(position)
-                cast.add_actor("falling_object", falling_object)                 
-        
-        
-            
-               
+                cast.add_actor("falling_object", falling_object)                              
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
