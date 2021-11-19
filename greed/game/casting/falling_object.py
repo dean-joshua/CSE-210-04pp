@@ -28,8 +28,11 @@ class Falling_Object(Actor):
         """Move the artifacts down by a random amount between 1 and 10"""
         x = self._position.get_x()
         y = self._position.get_y()
-        if y >= 600:
-            y = 0 + 1
-        else:
-            y += 1
+        y += 15
         self._position = Point(x,y)
+    
+    def is_ready_to_delete(self):
+        y = self._position.get_y()
+        if y >= 600:
+            return True
+        return False

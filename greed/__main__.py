@@ -24,7 +24,7 @@ ROWS = 40
 CAPTION = "Greed"
 DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
 WHITE = Color(255, 255, 255)
-DEFAULT_OBJECTS = 100
+DEFAULT_OBJECTS = 30
 
 
 def main():
@@ -35,7 +35,7 @@ def main():
     # create the banner
     banner = Actor()
     banner.set_text("")
-    banner.set_font_size(FONT_SIZE)
+    banner.set_font_size(45)
     banner.set_color(WHITE)
     banner.set_position(Point(CELL_SIZE, 0))
     cast.add_actor("banners", banner)
@@ -46,22 +46,21 @@ def main():
     position = Point(x, y)
 
     robot = Actor()
-    robot.set_text("#")
-    robot.set_font_size(16)
+    robot.set_text("<^>")
+    robot.set_font_size(25)
     robot.set_color(WHITE)
     robot.set_position(position)
     cast.add_actor("robots", robot)
     
-    # create the artifacts
+    # create the rocks and gems
 
     for n in range(DEFAULT_OBJECTS):
-        thingy = [42,79]
-        text = chr(random.choice(thingy))
-        #message = messages[n]
+        rox_n_gems = [42,79]
+        text = chr(random.choice(rox_n_gems))
 
         x = random.randint(1, COLS - 1) 
         y = random.randint(1, ROWS - 1)
-        position = Point(x, random.randint(1,20))
+        position = Point(x, 3)
         position = position.scale(CELL_SIZE)
 
         r = random.randint(0, 255)
@@ -71,10 +70,9 @@ def main():
         
         falling_object = Falling_Object()
         falling_object.set_text(text)
-        falling_object.set_font_size(20)
+        falling_object.set_font_size(30)
         falling_object.set_color(color)
         falling_object.set_position(position)
-        #artifact.set_message(message)
         cast.add_actor("falling_object", falling_object)
     
     # start the game

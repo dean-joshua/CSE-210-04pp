@@ -1,3 +1,8 @@
+import random
+from game.shared.color import Color
+from game.shared.point import Point
+from game.casting.falling_object import Falling_Object
+
 class Director:
     """A person who directs the game. 
     
@@ -18,6 +23,8 @@ class Director:
         self._keyboard_service = keyboard_service
         self._video_service = video_service
         self._score = 0
+        self._count = 0
+        self._timer = 0
         
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -52,20 +59,55 @@ class Director:
         robot = cast.get_first_actor("robots")
         falling_objects = cast.get_actors("falling_object")
 
-        for object in falling_objects:  
-            object.move()
-            if robot.get_position().equals(object.get_position()):
-                object.set_points()            
-                points = object.get_points()
-                self._score += points
-                cast.remove_actor("falling_object", object)
-                message = "Score: " + str(self._score)
-                banner.set_text(message) 
-
         banner.set_text(f"Score: {self._score}")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
+
+        # On every other frame do a movement
+        self._count += 1
+
+        if self._count == 2:
+
+            self._count = 0
+
+            for object in falling_objects:  
+                object.move()
+                if robot.get_position().equals(object.get_position()):
+                    object.set_points()            
+                    points = object.get_points()
+                    self._score += points
+                    cast.remove_actor("falling_object", object)
+                    message = "Score: " + str(self._score)
+                    banner.set_text(message)
+                elif object.is_ready_to_delete():
+                    cast.remove_actor("falling_obect", object)
+
+        self._timer += 1
+        if self._timer == 25:
+
+            self._timer = 0
+
+            for n in range(30):
+                rox_n_gems = [42,79]
+                text = chr(random.choice(rox_n_gems))
+
+                x = random.randint(1, 60 - 1) 
+                y = random.randint(1, 40 - 1)
+                position = Point(x, 3)
+                position = position.scale(15)
+
+                r = random.randint(0, 255)
+                g = random.randint(0, 255)
+                b = random.randint(0, 255)
+                color = Color(r, g, b)
+                
+                falling_object = Falling_Object()
+                falling_object.set_text(text)
+                falling_object.set_font_size(30)
+                falling_object.set_color(color)
+                falling_object.set_position(position)
+                cast.add_actor("falling_object", falling_object)                 
         
         
             
