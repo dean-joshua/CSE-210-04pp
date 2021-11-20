@@ -85,7 +85,7 @@ class Director:
 
         # A timer to control when to create and spawn new falling_objects
         self._timer += 1
-        if self._timer == 5:
+        if self._timer == 25:
 
             self._timer = 0
 
