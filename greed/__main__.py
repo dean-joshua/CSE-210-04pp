@@ -14,7 +14,7 @@ from game.shared.color import Color
 from game.shared.point import Point
 
 
-FRAME_RATE = 12
+FRAME_RATE = 30
 MAX_X = 900
 MAX_Y = 600
 CELL_SIZE = 15
